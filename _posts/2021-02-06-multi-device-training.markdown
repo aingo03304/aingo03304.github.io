@@ -7,6 +7,22 @@ mathjax: true
 comments: true
 ---
 
+# Table of Contents
+1. [Introduction](#Introduction)
+2. [Data Parallelism](#Data-Parallelism)
+3. [Model Parallelism](#Model-Parallelism)
+4. [Pipeline Parallelism](#Pipeline-Parallelism)
+5. [Collective Commnuication](#Collective-Commnuication)
+    1. [Frameworks](#Frameworks)
+    2. [In Data Parallelism](#In-Data-Parallelism)
+    3. [In Model Parallelism](#In-Model-Parallelism)
+    4. [In Pipeline Parallelism](#In-Pipeline-Parallelism)
+6. [Frameworks for Parallelism](#Frameworks-for-Parallelism)
+    1. [Tensorflow](#Tensorflow)
+    2. [PyTorch](#PyTorch)
+    3. [DeepSpeed](#DeepSpeed)
+7. [Conclusion](#Conclusion)
+
 # Introduction
 There are several strategies used to train a deep learning model with multi devices. In order to train a model across multiple devices, deep learning frameworks provide some features for distributed training such as:  
 1. Data Parallelism
