@@ -34,7 +34,7 @@ Each parallelism scheme has pros and cons and engineers should decide among thes
 # Data Parallelism
 Data Parallelism is well-known distributed method for training deep learning model. The notion of data parallelism is not only in deep learning domain but in plenty of domains. [SIMD](https://en.wikipedia.org/wiki/SIMD) instructions process multiple data simultaneously within one instruction, which is one of the data parallelism. Also, [SPMD](https://en.wikipedia.org/wiki/SPMD) programming model supports engineers to effectively do parallel programming. Data parallelism with multiple devices means that the task is splited into subtasks and each device conducts a subtask. For example, with (256, 32, 32, 3)-shaped input and 4 GPUs, it is easy to divide input into 4 (64, 32, 32, 3)-shaped inputs  because there is no dependence among batch axis in common deep learning task. 
 
-Of course, layers like Batch Normalization have to be synchronized so that means and variances are the same across multiple devices. We will going to talk about this later.
+Of course, layers like Batch Normalization have to be synchronized across all subtasks so that means and variances are the same across multiple devices. We will going to talk about this later.
 
 # Model Parallelism
 
@@ -52,3 +52,12 @@ Of course, layers like Batch Normalization have to be synchronized so that means
 ## DeepSpeed
 
 # Conclusion
+
+# References
+1. [PyTorch Distributed: Experiences on Accelerating
+Data Parallel Training](https://arxiv.org/pdf/2006.15704.pdf)
+2. [PyTorch Distributed Overview](https://pytorch.org/tutorials/beginner/dist_overview.html#data-parallel-training)
+3. [ZeRO: Memory Optimizations Toward Training Trillion Parameter Models](https://arxiv.org/pdf/1910.02054.pdf)
+4. [Mesh-TensorFlow: Deep Learning for Supercomputers](https://arxiv.org/pdf/1811.02084.pdf)
+5. [GPipe: Easy Scaling with Micro-Batch Pipeline Parallelism](https://arxiv.org/pdf/1811.06965.pdf)
+6. [PipeDream: Fast and Efficient Pipeline Parallel DNN Training](https://arxiv.org/pdf/1806.03377.pdf)
