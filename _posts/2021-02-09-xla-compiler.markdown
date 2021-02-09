@@ -2,7 +2,7 @@
 layout: post
 title: "Deep Dive into XLA (Draft)"
 date: 2020-03-01 01:43:00 +0900
-image_url: ""
+image_url: "/assets/state-and-market/2.png"
 mathjax: true
 comments: true
 ---
