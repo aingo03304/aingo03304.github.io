@@ -2,7 +2,7 @@
 layout: post
 title: "Deep Dive into XLA (Draft)"
 date: 2020-03-01 01:43:00 +0900
-image_url: "/assets/state-and-market/2.png"
+image_url: "/assets/xla/xlalogo.png"
 mathjax: true
 comments: true
 ---
@@ -14,6 +14,7 @@ An HLO pass that canonicalizes the dimension numbers of all top-level convolutio
 In order to hit the fast path of using Eigen's convolution implementation, a convolution's dimension numbers need to satisfy certain constraints (so called canonical convolutions). 
 
 This pass expands non-canonical convolutions into reshapes and canonical convolutions, so that these non-canonical convolutions can run faster.
+
 ## Parallel task assigner  
 ParallelTaskAssigner computes target parallel task counts for all HLOs in the module, then assigns parallel task counts to HLOs in the entry computation, or to HLOs in embedded computations invoked by (potentially nested) kWhile or kCall instructions. 
 
@@ -44,8 +45,7 @@ A call into cudnn for performing a batchnorm op is represented as a `CustomCall`
 - `kCudnnBatchNormForwardTrainingCallTarget`, or
 - `kCudnnBatchNormBackwardCallTarget`.
 
-A `CustomCall` created by this pass has the same operands corresponding batchnorm HLO, except the epsilon() and feature_index() properties of the batchnorm HLO are converted into proper operands, added to the end of the `CustomCall`
-'s operands list.
+A `CustomCall` created by this pass has the same operands corresponding batchnorm HLO, except the epsilon() and feature_index() properties of the batchnorm HLO are converted into proper operands, added to the end of the `CustomCall`'s operands list.
 
 The inputs/outputs of the cudnn calls for `BatchNormTraining` and `BatchNormGrad` do not correspond exactly to the HLOs.  In particular, the training cudnn call returns `1/sqrt(variance + epsilon)`, while the HLO returns plain variance.  Similarly, the grad cudnn call expects `1/sqrt(variance + epsilon)` as input, whereas the HLO expects plain variance.
 
@@ -56,7 +56,7 @@ Currently batchnorm ops over F32s are converted into cudnn calls, so long as eps
 The GPU backend does not implement a lowering for the batchnorm HLOs -- it expects them to be lowered to cudnn calls via this pass or to HLO soup via `BatchNormRewriter`.
 
 ## cuDNN fused conv rewriter  
-Rewrite the custom call targeting cudnnConvolutionForward to cudnnConvolutionBiasActivationForward by fusing applicable point-wise operations following forward convolution.  This transform must run after cudnn_conv_rewriter. It is straightforward for floating point convolutions: 
+Rewrite the custom call targeting cudnnConvolutionForward to cudnnConvolutionBiasActivationForward by fusing applicable point-wise operations following forward convolution.  This transform must run after `cudnn_conv_rewriter`. It is straightforward for floating point convolutions: 
 
 transforming
 ```
