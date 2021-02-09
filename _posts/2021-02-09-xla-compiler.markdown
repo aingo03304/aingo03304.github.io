@@ -28,7 +28,7 @@ This pass assumes that parameters and the root use unnested shapes, which is the
 This pass must run prior to copy insertion.
 
 ## cuBLAS GEMM pad for tensor cores  
-Adds padding to dot operations to make them run faster on GPUs with tensor cores (https://devblogs.nvidia.com/programming-tensor-cores-cuda-9/).
+Adds padding to dot operations to make them run faster on GPUs with tensor cores [https://devblogs.nvidia.com/programming-tensor-cores-cuda-9/](https://devblogs.nvidia.com/programming-tensor-cores-cuda-9/).
 
 f16 dots are padded to have input/output shapes with dimensions that are multiples of 8, so that we can use tensor cores.
 
