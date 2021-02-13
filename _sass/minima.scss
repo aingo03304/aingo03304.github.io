@@ -26,6 +26,9 @@ $content-width:    800px !default;
 $on-palm:          600px !default;
 $on-laptop:        800px !default;
 
+$border-radius:    20px !default;
+$post-height:      300px !default;
+
 // Use media queries like this:
 // @include media-query($on-palm) {
 //   .wrapper {
@@ -41,6 +44,11 @@ $on-laptop:        800px !default;
 
 @mixin relative-font-size($ratio) {
   font-size: $base-font-size * $ratio;
+}
+
+@mixin get-gradient-random() {
+  $gradient: linear-gradient(to right, #ff512f, #dd2476), linear-gradient(to right, #7474bf, #348ac7), linear-gradient(to right, #5c258d, #4389a2);
+  background: nth($gradient, random(3))
 }
 
 // Import partials.

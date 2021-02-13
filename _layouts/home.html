@@ -23,10 +23,8 @@ layout: default
           <div class="post-image-default"></div>
           {%- endif -%}
           <div class="post-card">
-            <div>
-              <span class="post-meta">{{ post.date | date: date_format }}</span> 
-              {{ post.title | escape }}
-            </div>
+            <div class="post-date">{{ post.date | date: date_format }}</div>
+            <div class="post-title">{{ post.title | escape }}</div>
           </div>
         </a>
       </li>
