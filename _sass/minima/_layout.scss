@@ -193,12 +193,35 @@
   list-style: none;
 
   > li {
-    text-align: center;
-    width: 180;
-    margin-left: $spacing-unit;
-    margin-right: $spacing-unit;
+    position: relative;
+    width: 100%;
+    -webkit-transition: opacity 0.3s ease-in-out;
+    -moz-transition: opacity 0.3s ease-in-out;
+    -ms-transition: opacity 0.3s ease-in-out;
+    -o-transition: opacity 0.3s ease-in-out;
+    transition: opacity 0.3s ease-in-out;
+    opacity: 1;
     margin-bottom: $spacing-unit;
-    float: left;
+  }
+
+  > li:hover {
+    opacity: 0.5;
+  }
+}
+
+.post-card {
+  position: absolute;
+  top: 0%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(#ffffff00, #000000ff);
+  opacity: 0.5;
+  > div {
+    font-weight: bold;
+    color: #ffffff;
+    position: relative;
+    top: 90%;
+    left: 10px;
   }
 }
 
@@ -208,15 +231,21 @@
 }
 
 .post-link {
-  width: 180px;
   word-wrap: break-word;
   @include relative-font-size(1.0);
 }
 
 .post-image {
   object-fit: cover;
-  width: 180px;
-  height: 180px;
+  object-position: center;
+  width: 100%;
+  height: 300px;
+}
+
+.post-image-default {
+  width: 100%;
+  height: 300px;
+  background: linear-gradient(to right, #ff512f, #dd2476);
 }
 
 
