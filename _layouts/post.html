@@ -5,15 +5,24 @@ layout: default
 <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
-    <p class="post-date">
-      <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-        {{ page.date | date: date_format }}
-      </time>
-      {%- if page.author -%}
-        • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{{ page.author | escape }}</span></span>
-      {%- endif -%}</p>
+    {%- if page.image_url != "" -%}
+    <img class="post-image" src={{ page.image_url }}/>
+    {%- else -%}
+    <div class="post-image-default"></div>
+    {%- endif -%}
+    <div class="post-card">
+      <div class="post-header-wrapper">
+        <div class="post-date">
+          <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+            {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+            {{ page.date | date: date_format }}
+          </time>
+          {%- if page.author -%}
+            • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{{ page.author | escape }}</span></span>
+          {%- endif -%}</div>
+        <div class="post-title" itemprop="name headline">{{ page.title | escape }}</div>
+      </div>
+    </div>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
