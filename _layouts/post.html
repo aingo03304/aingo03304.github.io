@@ -6,7 +6,8 @@ layout: default
 
   <header class="post-header">
     {%- if page.image_url != "" -%}
-    <img class="post-image" src={{ page.image_url }}/>
+    <img class="post-image" src="{{ page.image_url }}"/>
+
     {%- else -%}
     <div class="post-image-default"></div>
     {%- endif -%}
