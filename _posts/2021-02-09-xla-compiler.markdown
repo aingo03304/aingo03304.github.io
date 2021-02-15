@@ -396,7 +396,7 @@ The steps are:
 
 The pass also handles the case where multiple CMARs lead to the same CRAR,
 and eliminates all CMARs. This graph:
-
+```
        Y
        |
  X   CMAR_2   Z
@@ -406,9 +406,9 @@ CMAR_1     +
       +
       |
     CRAR
-
+```
 gets rewritten to:
-
+```
           Z   num_partitions
            \  /
       Y    div
@@ -418,6 +418,7 @@ gets rewritten to:
       +
       |
  all-core AR
+```
 
 
 ## Batch dot simplification
